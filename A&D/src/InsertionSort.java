@@ -5,7 +5,7 @@ public class InsertionSort {
         int[] A = {3 ,7 ,5 ,1 ,4};
         int[] B = {5,1,7,32,8,34,5,3,67,9,3};
         System.out.println(Arrays.toString(B));
-        insertionSort(B);
+        badinsertionsort(B);
     }
     public static void insertionSort(int[] A){
         int n = A.length;
@@ -32,5 +32,19 @@ public class InsertionSort {
             }
         }
         return left;
+    }
+    public static void badinsertionsort(int[] A){
+        int n = A.length;
+        for (int i = 0; i < n; i++) {
+            for (int j = i-1; j >= 0 && A[j] > A[j+1]; j--) {
+                swap(A, j, j+1);
+            }
+        }
+        System.out.println(Arrays.toString(A));
+    }
+    public static void swap(int[] A, int a, int b){
+        int temp = A[a];
+        A[a] = A[b];
+        A[b] = temp;
     }
 }
