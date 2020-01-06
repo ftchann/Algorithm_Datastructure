@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class Knapsack {
     public static void main(String[] args) {
         // dummy item for convenience
-        // test 2 3 4 5
+        // test 2 3 4 5 6
         int value[] = {0 ,1 ,4 ,5, 7};
         int weight[] = {0 ,1, 3, 4, 5};
         int maxweight = 7;
