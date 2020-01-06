@@ -1,4 +1,5 @@
 public class LinkedList {
+    // Double Linked List
     int size;
     Node first;
     Node last;
