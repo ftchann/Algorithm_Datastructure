@@ -1,3 +1,5 @@
+import testingshit.DFS.Stack;
+
 public class DFS {
 	class Graph {
 		int[][] graph; // undirected graph represented by an adjacency matrix
@@ -35,7 +37,25 @@ public class DFS {
 		}
 		
 		void DfsStack(int node) {
+			Stack stack = new Stack();
 			
+			stack.push(node);
+			
+			while (!stack.isEmpty()) {
+				node = stack.pop();
+				
+				visited[node] = true;
+				
+				for (int i = 0; i < graph[node].length; ++i) {
+					if (graph[node][i] == 1) {
+						if (visited[i]== false) {
+							visited[i] = true;
+							stack.push(i);
+						}
+					}
+				}
+				
+			}
 		}
 	
 	}
