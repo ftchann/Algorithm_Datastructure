@@ -2,7 +2,6 @@ import java.util.Arrays;
 
 public class Knapsack {
     public static void main(String[] args) {
-        //test idifd dd
         // dummy item for convenience
         int value[] = {0 ,1 ,4 ,5, 7};
         int weight[] = {0 ,1, 3, 4, 5};
