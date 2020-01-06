@@ -36,8 +36,11 @@ class Stack {
 		}
 	}
 	
-	public void pop() {
+	public int pop() {
+		int popped = top.value;
 		top = top.next;
+		
+		return popped;
 	}
 	
 	
