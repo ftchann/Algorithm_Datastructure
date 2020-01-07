@@ -125,16 +125,21 @@ class Main {
 			} while (m != root);
 		}
 		public void siftDown(int index) {
-			int maxIdx = index;
-			if(leftIndex(index) < N  && getLeft(index) > values[maxIdx]) {
-				maxIdx = leftIndex(index);
-			}
-			if(rightIndex(index) < N && getRight(index) > values[maxIdx]) {
-				maxIdx = rightIndex(index);
-			}
-			if(maxIdx != index) {
-				swap(index, maxIdx);
-				siftDown(maxIdx);
+			while(true){
+				int maxIdx = index;
+				if(leftIndex(index) < N  && getLeft(index) > values[maxIdx]) {
+					maxIdx = leftIndex(index);
+				}
+				if(rightIndex(index) < N && getRight(index) > values[maxIdx]) {
+					maxIdx = rightIndex(index);
+				}
+				if(maxIdx != index) {
+					swap(index, maxIdx);
+					index = maxIdx;
+				}
+				else{
+					break;
+				}
 			}
 		}
 		
