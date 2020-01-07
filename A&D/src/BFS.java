@@ -1,4 +1,4 @@
-import testingshit.BFS.Stack;
+
 
 //stack already defined in Stack class
 
@@ -16,7 +16,7 @@ public class BFS {
 			graph = g;
 			// initialize other attributes, if you declared any
 			visited = new boolean[g.length];
-			
+
 			for (int i = 0; i < g.length; ++i) {
 				visited[i] = false;
 			}
@@ -43,7 +43,5 @@ public class BFS {
 				}
 			}
 		}
-
-	
-		
+	}
 }
