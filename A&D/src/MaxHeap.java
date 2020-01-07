@@ -35,26 +35,17 @@ public class MaxHeap {
         heap.set(index, value);
         siftUp(index);
     }
-    public void siftDown(int k){
-        int current = k;
-        int n = heap.size();
-        while(current <= n/2){
-            int index = current;
-            if(getLeft(current) > heap.get(current)){
-                index = leftIndex(current);
-            }
-            if(rightIndex(current) < n){
-                if(getRight(current) > getLeft(current)){
-                    index = rightIndex(current);
-                }
-            }
-            if(index != current){
-                swap(current,index);
-                current = index;
-            }
-            else{
-                return;
-            }
+    public void siftDown(int index) {
+        int maxIdx = index;
+        if(leftIndex(index) < heap.size()  && getLeft(index) > heap.get(maxIdx)) {
+            maxIdx = leftIndex(index);
+        }
+        if(rightIndex(index) < heap.size() && getRight(index) > heap.get(maxIdx)) {
+            maxIdx = rightIndex(index);
+        }
+        if(maxIdx != index) {
+            swap(index, maxIdx);
+            siftDown(maxIdx);
         }
     }
     public void siftUp(int k){
@@ -95,11 +86,14 @@ public class MaxHeap {
     }
 
     public static void main(String[] args) {
+        int[] toadd = {19, 18, 16, 15, 17, 4, 12, 14, 11, 13, 6, 3, 0, 8, 2, 5, 9, 10, 1, 7};
         MaxHeap myheap = new MaxHeap();
-        myheap.add(10);
-        myheap.add(5);
-        myheap.add(50);
-        myheap.decreseKey(0,2);
+        for (int i = 0; i < toadd.length; i++) {
+            myheap.add(toadd[i]);
+        }
+        System.out.println(myheap.heap.size());
+        myheap.print();
+        myheap.remove();
         myheap.print();
     }
 }

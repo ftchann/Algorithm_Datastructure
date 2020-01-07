@@ -124,25 +124,17 @@ class Main {
 				swap(root, m);
 			} while (m != root);
 		}
-		public void siftDown(int k){
-			int current = k;
-			while(current <= N/2){
-				int index = current;
-				if(getLeft(current) > values[current]){
-					index = leftIndex(current);
-				}
-				if(rightIndex(current) < N){
-					if(getRight(current) > values[current]){
-						index = rightIndex(current);
-					}
-				}
-				if(index != current){
-					swap(current,index);
-					current = index;
-				}
-				else{
-					return;
-				}
+		public void siftDown(int index) {
+			int maxIdx = index;
+			if(leftIndex(index) < N  && getLeft(index) > values[maxIdx]) {
+				maxIdx = leftIndex(index);
+			}
+			if(rightIndex(index) < N && getRight(index) > values[maxIdx]) {
+				maxIdx = rightIndex(index);
+			}
+			if(maxIdx != index) {
+				swap(index, maxIdx);
+				siftDown(maxIdx);
 			}
 		}
 		
@@ -166,6 +158,7 @@ class Main {
 			//
 			// Your code goes here ...
 			//
+			//writeHeap(System.out);
 			swap(0,N-1);
 			N--;
 			siftDown(0);
