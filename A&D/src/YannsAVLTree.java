@@ -1,6 +1,6 @@
 import java.util.*;
-// Clean AVL Tree Implementatation with Rank;
-//Please someone Test if it's correct.
+// Clean AVL Tree Implementatation with Rank.
+//Please someone Test if it's correct. should work
 public class YannsAVLTree {
 	class Node{
         int key;
