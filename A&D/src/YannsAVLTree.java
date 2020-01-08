@@ -1,5 +1,6 @@
 import java.util.*;
 // Clean AVL Tree Implementatation with Rank;
+//Please someone Test if it's correct.
 public class YannsAVLTree {
 	class Node{
         int key;
@@ -96,6 +97,108 @@ public class YannsAVLTree {
     	update_size(left);
     	return left;
     }
+    public void remove(int key) {
+    	root = remove(root, key);
+    }
+    private Node remove(Node root, int key) {
+    	if(root == null) {
+    		return null;
+    	}
+    	if(root.key < key) {
+    		root.right = remove(root.right, key);
+    	}else if(root.key > key) {
+    		root.right = remove(root.left, key);
+    	}else {
+    		if(root.left == null) {
+    			return root.right;
+    		}
+    		else if(root.right == null) {
+    			return root.left;
+    		}else {
+    			int right_most_of_left = right_most(root.left);
+    			root.left = remove(root.left, right_most_of_left);
+    			root.key = right_most_of_left;
+    		}
+    	}
+    	return balance(root);
+    }
+    private int right_most(Node root) {
+    	while(root.right != null) {
+    		root = root.right;
+    	}
+    	return root.key;
+    }
+    public List<Integer> list(int first_key, int last_key){
+    	Node lca = _lca(first_key, last_key);
+    	System.out.println(lca.key);
+    	List<Integer> result = new ArrayList<Integer>();
+    	_node_list(lca, first_key, last_key, result);
+    	return result;
+    }
+    private Node _lca(int lo, int hi) {
+    	Node node = root;
+    	while(node != null && !(lo <= node.key && node.key <= hi)) {
+    		if(lo < node.key) {
+    			node = node.left;
+    		}
+    		else {
+    			node = node.right;
+    		}
+    	}
+    	return node;
+    }
+    private void _node_list(Node node , int lo, int hi, List<Integer> result){
+    	if(node == null) {
+    		return;
+    	}
+    	if(lo <= node.key && node.key <= hi) {
+    		result.add(node.key);
+    	}
+    	if(node.key >= lo) {
+    		_node_list(node.left, lo, hi , result);
+    	}
+    	if(node.key <= hi) {
+    		_node_list(node.right, lo, hi, result);
+    	}
+    }
+    public int count(int first_key, int last_key) {
+    	int first_rank = rank(first_key);
+    	int last_rank = rank(last_key);
+    	int first_exist = exist(first_key);
+    	return last_rank - first_rank + first_exist;
+    }
+    private int rank(int key) {
+    	int rank = 0;
+    	Node node = root;
+    	while(node != null && !(node.key == key)) {
+    		if(key < node.key) {
+    			node = node.left;
+    		}
+    		else {
+    			rank += size(node.left) + 1;
+    			node = node.right;
+    		}
+    	}
+    	if(node != null) {
+    		rank += size(root.left) + 1;
+    	}
+    	return rank;
+    }
+    private int exist(int key) {
+    	Node node = root;
+    	while(node != null && !(node.key == key)) {
+    		if(key < node.key) {
+    			node = node.left;
+    		}
+    		else {
+    			node = node.right;
+    		}
+    	}
+    	if(node != null) {
+    		return 1;
+    	}
+    	return 0;
+    }
     private void _pre_(Node root, List<Integer> pre) {
     	if(root != null) {
     		pre.add(root.key);
@@ -115,7 +218,9 @@ public class YannsAVLTree {
     	mytree.add(5);
     	mytree.add(3);
     	mytree.add(1);
+    	mytree.remove(3);
     	System.out.println(mytree.pre_order());
+    	System.out.println(mytree.list(1, 10));
     }
 }
 
