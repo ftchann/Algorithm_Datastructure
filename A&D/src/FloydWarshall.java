@@ -14,7 +14,11 @@ public class FloydWarshall {
         for (int i = 0; i < n; i++) {
             for (int u = 0; u < n; u++) {
                 for (int v = 0; v < n; v++) {
-                    d[u][v] = Math.min(d[u][v],d[u][i] + d[i][v]);
+                    if(d[u][i] == Integer.MAX_VALUE || d[i][v] == Integer.MAX_VALUE){
+                        d[u][v] = d[u][v];
+                    }else{
+                        d[u][v] = Math.min(d[u][v],d[u][i] + d[i][v]);
+                    }
                 }
             }
         }
