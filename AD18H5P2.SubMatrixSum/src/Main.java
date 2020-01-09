@@ -55,7 +55,7 @@ class Main
 				B[y][x] = B[y-1][x] + B[y][x-1] - B[y-1][x-1] + A[y-1][x-1];
 			}
 		}
-		System.out.println(Arrays.deepToString(B));
+		//System.out.println(Arrays.deepToString(B));
 		int p = Integer.parseInt(scanner.nextLine());
 		int ix, iy, jx, jy;
 		for (int i = 0; i < p; i++) {

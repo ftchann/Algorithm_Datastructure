@@ -37,10 +37,10 @@ public class YannsAVLTree {
     	return balance(root);
     }
     private void update_height(Node root) {
-    	root.height=Math.max(height(root.left), height(root.right))+1;
+		root.height=Math.max(height(root.left), height(root.right))+1;
     }
     private void update_size(Node root) {
-    	root.size = size(root.left) + size(root.right);
+		root.size = size(root.left) + size(root.right) + 1;
     }
     private int height(Node root) {
     	if(root == null) 
@@ -130,7 +130,6 @@ public class YannsAVLTree {
     }
     public List<Integer> list(int first_key, int last_key){
     	Node lca = _lca(first_key, last_key);
-    	System.out.println(lca.key);
     	List<Integer> result = new ArrayList<Integer>();
     	_node_list(lca, first_key, last_key, result);
     	return result;
@@ -206,6 +205,25 @@ public class YannsAVLTree {
         	_pre_(root.right, pre);
     	}
     }
+    // 0 based. the lowest Element is element 0;
+	private int kele(int k, Node node){
+		if(k > size(node)){
+			throw new IllegalArgumentException();
+		}
+		if(size(node.left) == k){
+			return node.key;
+		}else if(size(node.left) > k){
+			return kele(k, node.left);
+		}else{
+			//size node.left < k
+			return kele(k-size(node.left) -1, node.right);
+		}
+	}
+
+    public int ithelement(int i){
+		int ans = kele(i, root);
+		return ans;
+	}
     
     public List<Integer> pre_order() {
     	List<Integer> preorder = new ArrayList<Integer>();
@@ -218,7 +236,8 @@ public class YannsAVLTree {
     	mytree.add(5);
     	mytree.add(3);
     	mytree.add(1);
-    	mytree.remove(3);
+    	mytree.add(0);
+		System.out.println(mytree.ithelement(3));
     	System.out.println(mytree.pre_order());
     	System.out.println(mytree.list(1, 10));
     }
