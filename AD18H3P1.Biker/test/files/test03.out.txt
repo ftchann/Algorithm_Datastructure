@@ -1,0 +1,3 @@
+Maximum Height: 4
+Minimum Height: -4
+Elevation Gain: 1326
