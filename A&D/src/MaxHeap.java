@@ -6,20 +6,24 @@ public class MaxHeap {
     public MaxHeap(){
         heap = new ArrayList<>();
     }
+    
     public void print(){
         for(int a: heap){
             System.out.print(a+ " ");
         }
         System.out.println();
     }
+    
     public void add(int k){
         heap.add(k);
         siftUp(heap.size()-1);
     }
+    
     public int max(){
         // Assume heap is not empty, don't want to throw Error cause i don't want to catch them.
         return heap.get(0);
     }
+    
     public int remove(){
         int n = heap.size();
         swap(0, n-1);
@@ -27,14 +31,17 @@ public class MaxHeap {
         siftDown(0);
         return temp;
     }
+    
     public void decreaseKey(int index, int value){
         heap.set(index , value);
         siftDown(index);
     }
+    
     public void increaseKey(int index, int value){
         heap.set(index, value);
         siftUp(index);
     }
+    
     public void siftDown(int index) {
         while(true) {
             int maxIdx = index;
@@ -53,6 +60,7 @@ public class MaxHeap {
             }
         }
     }
+    
     public void siftUp(int k){
         int current = k;
         while(parentIndex(current) >= 0){
@@ -62,6 +70,7 @@ public class MaxHeap {
             current = parentIndex(current);
         }
     }
+    
     public int parentIndex(int index){
         return ((index + 1)/2) - 1;
     }
@@ -73,6 +82,7 @@ public class MaxHeap {
     public int rightIndex(int index) {
         return (index + 1)*2;
     }
+    
     private int getParent(int index) {
         return heap.get(parentIndex(index));
     }
@@ -84,6 +94,7 @@ public class MaxHeap {
     private int getRight(int index) {
         return heap.get(rightIndex(index));
     }
+    
     public void swap(int l, int r){
         int temp = heap.get(l);
         heap.set(l, heap.get(r));
