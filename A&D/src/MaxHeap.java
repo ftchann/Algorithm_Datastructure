@@ -27,7 +27,7 @@ public class MaxHeap {
         siftDown(0);
         return temp;
     }
-    public void decreseKey(int index, int value){
+    public void decreaseKey(int index, int value){
         heap.set(index , value);
         siftDown(index);
     }
