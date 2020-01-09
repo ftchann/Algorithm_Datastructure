@@ -6,6 +6,7 @@
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
 import java.util.Scanner;
 
 class Main
@@ -19,12 +20,59 @@ class Main
 	// 
 	// The number of elements of an array A can be accessed using A.length
 	//
+	private static int lowerBound(int[] A, int element){
+		int low = 0;
+		int high = A.length-1;
+		while(low < high){
+			int middle = low + (high - low)/2;
+			if(element > A[middle])
+				low = middle + 1;
+			else
+				high = middle;
+		}
+		return low;
+	}
+	public static int upperbound(int A[], int element){
+		int low = 0;
+		int high = A.length;
+		while(low < high){
+			int middle = low + (high - low)/2;
+			if(A[middle] >= element)
+				high = middle;
+			else
+				low = middle + 1;
+		}
+		return low;
+	}
+
 	public static int solve (int n, int[] mountain_cities, int[] sea_cities, int[] trip_beginning, int[] trip_end)
 	{		
 		//
 		// Provide your solution here
-		//		
-		return -1;
+		//
+		int max=0;
+		int maxindex = 0;
+		Arrays.sort(mountain_cities);
+		Arrays.sort(sea_cities);
+
+		for (int i = 0; i < trip_beginning.length; i++) {
+			int tripbegin = trip_beginning[i];
+			int tripend = trip_end[i];
+			int uppersea = sea_cities[upperbound(sea_cities, tripbegin)];
+			if(uppersea <= tripend){
+				//System.out.println(i);
+				continue;
+			}
+			int uppermountain = upperbound(mountain_cities, tripbegin);
+			int lowermountain = lowerBound(mountain_cities, tripend);
+			//System.out.println(uppermountain + " "+ lowermountain);
+			if(lowermountain- uppermountain > max){
+				max = lowermountain-uppermountain;
+				maxindex = i;
+			}
+		}
+
+		return maxindex+1;
 	}
 	
 	public static void read_and_solve(InputStream in, PrintStream out) {
