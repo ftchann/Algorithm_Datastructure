@@ -6,6 +6,7 @@
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.math.BigInteger;
 
@@ -19,11 +20,36 @@ class Main {
 		//
 		int N = scanner.nextInt();
 		int K = scanner.nextInt();
-			
+
+		int v[] = new int[N];
+		BigInteger[] d = new BigInteger[K];
+
+		for (int i = 0; i < K; i++) {
+			d[i] = BigInteger.ZERO;
+		}
+
+		for (int i = 0; i < N; i++) {
+			v[i] = scanner.nextInt();
+		}
+		d[0] = BigInteger.ONE;
+		for (int i = 0; i < N; i++) {
+			for (int j = K-1; j >= v[i] ; j--) {
+				d[j] = (d[j-v[i]]).add(d[j]);
+			}
+		}
+
+		BigInteger invalid = BigInteger.ZERO;
+		for (int i = 0; i < K; i++) {
+			invalid = invalid.add(d[i]);
+		}
+		invalid = invalid.shiftLeft(1);
+
+		BigInteger power2 = BigInteger.ONE.shiftLeft(N);
+		BigInteger result = power2.subtract(invalid);
 		//
 		// Provide your solution here ...
 		//
-		// out.println(result.toString());		
+		out.println(result);
 
 				
 		scanner.close();
