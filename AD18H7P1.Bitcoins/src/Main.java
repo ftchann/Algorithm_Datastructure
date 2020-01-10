@@ -24,8 +24,8 @@ class Main {
 		//
 		Scanner scanner = new Scanner(in);
 		int Q = scanner.nextInt();
-		PriorityQueue<Integer> Maxheap = new PriorityQueue<>(new IntComparator());
-		PriorityQueue<Integer> Minheap = new PriorityQueue<>();
+		PriorityQueue<Integer> Maxheap = new PriorityQueue<Integer>();
+		PriorityQueue<Integer> Minheap = new PriorityQueue<Integer>();
 		int maxValue = Integer.MIN_VALUE;
 
 
@@ -40,12 +40,12 @@ class Main {
 				if((Maxheap.size() + Minheap.size()) % 3 == 2){
 					Minheap.add(value);
 				}else {
-					Maxheap.add(value);
+					Maxheap.add(-value);
 				}
 				if(Minheap.size() >0) {
-					if (Minheap.peek() < Maxheap.peek()) {
-						Maxheap.add(Minheap.remove());
-						Minheap.add(Maxheap.remove());
+					if (Minheap.peek() < -(Maxheap.peek())) {
+						Maxheap.add(-Minheap.remove());
+						Minheap.add(-Maxheap.remove());
 					}
 				}
 			} else if (command == 2) {				
@@ -69,16 +69,5 @@ class Main {
 	// 
 	public static void main(String[] args) {	
 		read_and_solve(System.in, System.out);		
-	}
-}
-class IntComparator implements Comparator<Integer>{
-	public int compare(Integer a, Integer b){
-		if (a > b){
-			return -1;
-		}
-		else if(a < b){
-			return 1;
-		}
-		return 0;
 	}
 }
