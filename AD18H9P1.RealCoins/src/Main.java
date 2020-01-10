@@ -47,7 +47,7 @@ class Main {
 			for (int i = 0; i < K; i++) {
 				invalid = invalid.add(d[i]);
 			}
-			BigInteger two = BigInteger.TWO;
+			BigInteger two = BigInteger.valueOf(2);
 			invalid = invalid.multiply(two);
 
 			BigInteger power = two.pow(N);
