@@ -1,0 +1,20 @@
+2
+9 9
+A
+B
+C
+D
+E
+F
+GGGGGGGGG
+HHH
+I.
+8 18
+Lorem
+ipsum
+dolor
+sit
+amet,
+consectetur
+adipiscing
+elit.
