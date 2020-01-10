@@ -43,6 +43,7 @@ public class LPS {
                 toreturn = remodifie(str.substring(i-maxLen, i + maxLen));
             }
         }
+        System.out.println(Arrays.toString(P));
         return toreturn;
     }
     public static String remodifie(String s){

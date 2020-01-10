@@ -52,7 +52,7 @@ class Main {
 		out.println(result);
 
 				
-		scanner.close();
+		//scanner.close();
 	}
 
 	//
