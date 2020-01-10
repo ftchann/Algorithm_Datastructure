@@ -25,11 +25,11 @@ class Main
 		int low = 0;
 		int high = A.length-1;
 		while(low < high){
-			int middle = low + (high - low)/2;
-			if(A[middle] <= element)
-				high = middle;
+			int middle = low + (high - low +1)/2;
+			if(A[middle] > element)
+				high = middle-1;
 			else
-				low = middle+1;
+				low = middle;
 		}
 		return low;
 	}

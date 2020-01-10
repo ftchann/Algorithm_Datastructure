@@ -23,6 +23,31 @@ public class BinarySearch {
 		// not present
 		return -1;
 	}
+	private static int lowerBound(int[] A, int element){
+		//System.out.println(Arrays.toString(A) + " " + element);
+		int low = 0;
+		int high = A.length-1;
+		while(low < high){
+			int middle = low + (high - low +1)/2;
+			if(A[middle] > element)
+				high = middle-1;
+			else
+				low = middle;
+		}
+		return low;
+	}
+	public static int upperbound(int A[], int element){
+		int low = 0;
+		int high = A.length-1;
+		while(low < high){
+			int middle = low + (high - low)/2;
+			if(A[middle] >= element)
+				high = middle;
+			else
+				low = middle + 1;
+		}
+		return low;
+	}
 
 	public static void main(String args[]) {
 		BinarySearch ob = new BinarySearch();

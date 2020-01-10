@@ -63,26 +63,31 @@ class Main {
 			boolean visited[][] = new boolean[n][n];
 			Q.add(new Position(0,startx,starty));
 			while (!Q.isEmpty()){
+
 				Position pos = Q.poll();
 				int currx = pos.x;
 				int currweight = pos.weight;
 				int curry = pos.y;
-				visited[currx][curry] = true;
-				if(pos.x == 0 || pos.x == n-1 || pos.y == 0 || pos.y == n-1){
-					out.println(currweight);
-					break;
-				}else{
-					if(!visited[currx-1][curry]) {
-						Q.add(new Position(currweight + T[currx - 1][curry], currx - 1, curry));
-					}
-					if(!visited[currx+1][curry]) {
-						Q.add(new Position(currweight + T[currx + 1][curry], currx + 1, curry));
-					}
-					if(!visited[currx][curry-1]){
-						Q.add(new Position(currweight+ T[currx][curry-1],currx, curry-1));
-					}
-					if(!visited[currx][curry+1]){
-						Q.add(new Position(currweight+ T[currx][curry+1],currx, curry+1));
+				if(visited[currx][curry]){
+					continue;
+				}else {
+					visited[currx][curry] = true;
+					if (pos.x == 0 || pos.x == n - 1 || pos.y == 0 || pos.y == n - 1) {
+						out.println(currweight);
+						break;
+					} else {
+						if (!visited[currx - 1][curry]) {
+							Q.add(new Position(currweight + T[currx - 1][curry], currx - 1, curry));
+						}
+						if (!visited[currx + 1][curry]) {
+							Q.add(new Position(currweight + T[currx + 1][curry], currx + 1, curry));
+						}
+						if (!visited[currx][curry - 1]) {
+							Q.add(new Position(currweight + T[currx][curry - 1], currx, curry - 1));
+						}
+						if (!visited[currx][curry + 1]) {
+							Q.add(new Position(currweight + T[currx][curry + 1], currx, curry + 1));
+						}
 					}
 				}
 			}
