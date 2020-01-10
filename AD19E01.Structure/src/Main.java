@@ -87,19 +87,12 @@ class Main {
 		//
 		// Determine which set a particular element belongs to. 
 		// Return the label or the 'id' of the set for a given x
-		int find (int x) {
+		int find (int a) {
 			// Path Compression
-			int root = x;
-			while (parent[root] != root){
-				root = parent[root];
+			if(a == parent[a]){
+				return a;
 			}
-			int n = x;
-			while (n != root){
-				int q = parent[n];
-				parent[n] = root;
-				n = q;
-			}
-			return root;
+			return parent[a] = find(parent[a]);
 		}
 		//
 		// Connect or join two sets. In other words, change 
@@ -107,11 +100,19 @@ class Main {
 		// x and the one containing y, by a single set that is 
 		// the union of these two sets. 
 		//
-		void union (int x, int y) {						
-			int xRoot = find(x);
-			int yRoot = find(y);
-			unionroots(xRoot, yRoot);
+		void union (int a, int b) {
+			a = find(a);
+			b = find(b);
+			double r = Math.random();
+			int randint = 0;
+			randint = r > 0.5 ? 1 : 0;
+			if(randint%2 == 0){
+				parent[a] = b;
+			}else{
+				parent[b] = a;
+			}
 		}
+
 		void unionroots(int xRoot , int yRoot){
 			if(xRoot == yRoot){
 				return;

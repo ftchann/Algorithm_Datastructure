@@ -5,7 +5,8 @@ public class LPS {
     // O(n^2) solution
     public static void main(String[] args) {
         String S = "GOKAYAKING";
-        System.out.println(manachersAlgorithm(S));
+        String A = "BABA";
+        System.out.println(manachersAlgorithm(A));
     }
     public static String manachersAlgorithm(String s){
         String toreturn = "";
