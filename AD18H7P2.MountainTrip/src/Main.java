@@ -21,20 +21,21 @@ class Main
 	// The number of elements of an array A can be accessed using A.length
 	//
 	private static int lowerBound(int[] A, int element){
+		//System.out.println(Arrays.toString(A) + " " + element);
 		int low = 0;
 		int high = A.length-1;
 		while(low < high){
 			int middle = low + (high - low)/2;
-			if(element > A[middle])
-				low = middle + 1;
-			else
+			if(A[middle] <= element)
 				high = middle;
+			else
+				low = middle+1;
 		}
 		return low;
 	}
 	public static int upperbound(int A[], int element){
 		int low = 0;
-		int high = A.length;
+		int high = A.length-1;
 		while(low < high){
 			int middle = low + (high - low)/2;
 			if(A[middle] >= element)
@@ -54,6 +55,7 @@ class Main
 		int maxindex = 0;
 		Arrays.sort(mountain_cities);
 		Arrays.sort(sea_cities);
+		//System.out.println(mountain_cities[upperbound(mountain_cities,2)]);
 
 		for (int i = 0; i < trip_beginning.length; i++) {
 			int tripbegin = trip_beginning[i];
