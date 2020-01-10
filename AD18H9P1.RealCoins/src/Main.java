@@ -24,35 +24,40 @@ class Main {
 		int v[] = new int[N];
 		BigInteger[] d = new BigInteger[K];
 
-		for (int i = 0; i < K; i++) {
-			d[i] = BigInteger.ZERO;
-		}
 
+		long sum = 0;
 		for (int i = 0; i < N; i++) {
 			v[i] = scanner.nextInt();
+			sum+=v[i];
 		}
-		d[0] = BigInteger.ONE;
-		for (int i = 0; i < N; i++) {
-			for (int j = K-1; j >= v[i] ; j--) {
-				d[j] = (d[j-v[i]]).add(d[j]);
+		if (sum < K * 2){
+			out.println("0");
+		}else{
+			d[0] = BigInteger.ONE;
+			for (int i = 1; i < K; i++) {
+				d[i] = BigInteger.ZERO;
 			}
+			for (int i = 0; i < N; i++) {
+				for (int j = K-1; j >= v[i] ; j--) {
+					d[j] = (d[j-v[i]]).add(d[j]);
+				}
+			}
+
+			BigInteger invalid = BigInteger.ZERO;
+			for (int i = 0; i < K; i++) {
+				invalid = invalid.add(d[i]);
+			}
+			BigInteger two = BigInteger.TWO;
+			invalid = invalid.multiply(two);
+
+			BigInteger power = two.pow(N);
+			BigInteger result = power.subtract(invalid);
+			//
+			// Provide your solution here ...
+			//
+			out.println(result.toString());
 		}
-
-		BigInteger invalid = BigInteger.ZERO;
-		for (int i = 0; i < K; i++) {
-			invalid = invalid.add(d[i]);
-		}
-		invalid = invalid.shiftLeft(1);
-
-		BigInteger power2 = BigInteger.ONE.shiftLeft(N);
-		BigInteger result = power2.subtract(invalid);
-		//
-		// Provide your solution here ...
-		//
-		out.println(result);
-
-				
-		//scanner.close();
+		scanner.close();
 	}
 
 	//
