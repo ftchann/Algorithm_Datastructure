@@ -44,12 +44,23 @@ class Main {
 						int wi = weight[i];
 						int si = space[i];
 						int pi = price[i];
-						if(wi > w){
-							dp[i][s][w] = dp[i-1][s][w];
+						int a = 0;
+						int b = 0;
+						int c = 0;
+						int d = 0;
+						if(i-1 >= 1) {
+							a=dp[i-1][s][w];
 						}
-						else {
-							dp[i][s][w] = Math.max(dp[i-1][s][w], dp[i-1][Math.max(0,s-si)][w-wi] + pi);
+						if(s-1 >= 0) {
+							b=dp[i][s-1][w];
 						}
+						if(w-1>=0) {
+							c = dp[i][s][w-1];
+						}
+						if(w-wi >= 0) {
+							d = dp[i-1][Math.max(0,s-si)][w-wi] + pi;
+						}
+						dp[i][s][w] = Math.max(Math.max(a,b), Math.max(c,d));
 					}
 				}
 			}
