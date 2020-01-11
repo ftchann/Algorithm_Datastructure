@@ -48,10 +48,10 @@ class Main {
 						int b = 0;
 						int c = 0;
 						int d = 0;
-						if(i-1 >= 1) {
+						if(i-1 >= 0) {
 							a=dp[i-1][s][w];
 						}
-						if(s+1 <= S) {
+						if(s+1 <=S) {
 							b=dp[i][s+1][w];
 						}
 						if(w-1>=0) {
