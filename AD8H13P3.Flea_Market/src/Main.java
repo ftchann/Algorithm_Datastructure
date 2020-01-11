@@ -51,8 +51,8 @@ class Main {
 						if(i-1 >= 1) {
 							a=dp[i-1][s][w];
 						}
-						if(s-1 >= 0) {
-							b=dp[i][s-1][w];
+						if(s+1 <= S) {
+							b=dp[i][s+1][w];
 						}
 						if(w-1>=0) {
 							c = dp[i][s][w-1];
