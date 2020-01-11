@@ -61,6 +61,7 @@ class Main {
 							d = dp[i-1][Math.max(0,s-si)][w-wi] + pi;
 						}
 						dp[i][s][w] = Math.max(Math.max(a,b), Math.max(c,d));
+						assert dp[i][s][w] >=0;
 					}
 				}
 			}
