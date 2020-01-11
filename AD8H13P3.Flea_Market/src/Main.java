@@ -39,7 +39,7 @@ class Main {
 			}
 			int[][][] dp = new int[n+1][S+1][W+1];
 			for (int i = 1; i <= n ; i++) {
-				for (int s = 0; s <= S; s++) {
+				for (int s = S; s >= 0; s--) {
 					for (int w = 0; w <= W ; w++) {
 						int wi = weight[i];
 						int si = space[i];
