@@ -6,6 +6,7 @@ public class Johnson {
     // JUST FUCK Johnson, I won't implement thit shit in the near future.
 	
 	//real talk, fuck johnson with a big wiener
+    // The timecomplexity is still slower than floyd warshall cause it uses an Adjacency Matrix lul
     static class Pair implements Comparable<Pair>{
         int distance;
         int vertex;
