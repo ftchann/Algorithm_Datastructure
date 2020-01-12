@@ -1,6 +1,7 @@
 public class BellmanFord {
     // Java pseudocode, I won't create Testdata and i won't read in input, feel free to do it yourself;
     // BellmanFord with unnormal datastructures for Graph
+    // it doesn't quite work cause of int overflow it is fixed in johnson.
     public static void main(String[] args) {
         int[] V = {0,1,2,3,4,5,6,7,8,9};
         int n = V.length; //Anzahl vertices
@@ -20,7 +21,7 @@ public class BellmanFord {
                 int v = a.to;
                 int u = a.from;
                 int w = a.weight;
-                if(d[v] > d[u]+w){
+                if(d[u] !=  Integer.MAX_VALUE && d[v] > d[u]+w){
                     d[v] = d[u] + w;
                     p[v] = u;
                 }
@@ -30,7 +31,7 @@ public class BellmanFord {
             int v = a.to;
             int u = a.from;
             int w = a.weight;
-            if(d[v] > d[u]+w){
+            if(d[u] !=  Integer.MAX_VALUE && d[v] > d[u]+w){
                 System.out.println("Negative Cycle");
             }
         }
@@ -44,5 +45,14 @@ class Edge{
         this.to = to;
         this.from = from;
         this.weight = weight;
+    }
+
+    @Override
+    public String toString() {
+        return "Edge{" +
+                "from=" + from +
+                ", to=" + to +
+                ", weight=" + weight +
+                '}';
     }
 }

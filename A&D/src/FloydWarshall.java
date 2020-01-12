@@ -4,10 +4,14 @@ public class FloydWarshall {
     public static void main(String[] args) {
         // distances from one vertex to another in a weighted, directed graph;
         int[][] d= {
-                {0,1,2,3},
-                {4,0,5,6},
-                {7,8,0,9},
-                {10,11,12,0}
+                {0,-5,2,3},
+                {Integer.MAX_VALUE,0,4,Integer.MAX_VALUE},
+                {Integer.MAX_VALUE,Integer.MAX_VALUE,0,1},
+                {Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,0}
+        };
+        int[][] a ={{0,-2,-3},
+                {4,0,0},
+                {Integer.MAX_VALUE, Integer.MAX_VALUE, 0}
         };
         int n=d.length;
         assert n==d[0].length;
