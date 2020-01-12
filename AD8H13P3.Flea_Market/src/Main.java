@@ -38,29 +38,26 @@ class Main {
 				price [i] = scanner.nextInt();
 			}
 			int[][][] dp = new int[n+1][S+1][W+1];
+			for (int s = 0; s < S; s++) {
+				for (int w = 0; w < W; w++) {
+					dp[0][s][w] = Integer.MIN_VALUE;
+				}
+			}
 			for (int i = 1; i <= n ; i++) {
-				for (int s = S; s >= 0; s--) {
+				for (int s = 0; s >= S; s--) {
 					for (int w = 0; w <= W ; w++) {
 						int wi = weight[i];
 						int si = space[i];
 						int pi = price[i];
 						int a = 0;
-						int b = 0;
-						int c = 0;
 						int d = 0;
 						if(i-1 >= 0) {
 							a=dp[i-1][s][w];
 						}
-						if(s+1 <=S) {
-							b=dp[i][s+1][w];
-						}
-						if(w-1>=0) {
-							c = dp[i][s][w-1];
-						}
 						if(w-wi >= 0) {
 							d = dp[i-1][Math.max(0,s-si)][w-wi] + pi;
 						}
-						dp[i][s][w] = Math.max(Math.max(a,b), Math.max(c,d));
+						dp[i][s][w] = Math.max(a,d);
 						assert dp[i][s][w] >=0;
 					}
 				}
