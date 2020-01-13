@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Prim {
     public static void main(String[] args) {
         int[][] graph = new int[10][10]; //
