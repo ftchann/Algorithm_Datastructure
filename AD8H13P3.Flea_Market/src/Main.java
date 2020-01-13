@@ -1,12 +1,11 @@
 //=======================================================================================================
 // Exercise     : AD8H13P3.Flea_Market
 // Template URL : https://www.cadmo.ethz.ch/education/lectures/HS18/DA/uebungen/AD8H13P3.Flea_Market.zip
-// Author       :  
+// Author       :
 //=======================================================================================================
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.Arrays;
 import java.util.Scanner;
 
 class Main {
@@ -38,27 +37,22 @@ class Main {
 				price [i] = scanner.nextInt();
 			}
 			int[][][] dp = new int[n+1][S+1][W+1];
-			for (int s = 0; s < S; s++) {
-				for (int w = 0; w < W; w++) {
+			for (int s = 1; s <= S; s++) {
+				for (int w = 0; w <= W; w++) {
 					dp[0][s][w] = Integer.MIN_VALUE;
 				}
 			}
 			for (int i = 1; i <= n ; i++) {
-				for (int s = 0; s >= S; s--) {
+				for (int s = 0; s <= S; s++) {
 					for (int w = 0; w <= W ; w++) {
 						int wi = weight[i];
 						int si = space[i];
 						int pi = price[i];
-						int a = 0;
-						int d = 0;
-						if(i-1 >= 0) {
-							a=dp[i-1][s][w];
-						}
 						if(w-wi >= 0) {
-							d = dp[i-1][Math.max(0,s-si)][w-wi] + pi;
+							dp[i][s][w] = Math.max(dp[i-1][Math.max(0,s-si)][w-wi] + pi, dp[i-1][s][w]);
+						}else{
+							dp[i][s][w] =dp[i-1][s][w];
 						}
-						dp[i][s][w] = Math.max(a,d);
-						assert dp[i][s][w] >=0;
 					}
 				}
 			}
@@ -66,7 +60,7 @@ class Main {
 			out.println(dp[n][S][W]);
 			//
 			// Provide your solution here
-			//			
+			//
 		}
 
 		scanner.close();
@@ -74,8 +68,8 @@ class Main {
 
 	//
 	// Do not modify the main method, and keep the method read_and_solve
-	// 
-	public static void main(String[] args) {	
-		read_and_solve(System.in, System.out);		
+	//
+	public static void main(String[] args) {
+		read_and_solve(System.in, System.out);
 	}
 }
