@@ -107,7 +107,7 @@ public class YannsAVLTree {
     	if(root.key < key) {
     		root.right = remove(root.right, key);
     	}else if(root.key > key) {
-    		root.right = remove(root.left, key);
+    		root.left = remove(root.left, key);
     	}else {
     		if(root.left == null) {
     			return root.right;
