@@ -8,7 +8,7 @@ public class Natural2WayMergeSort {
         System.out.println(Arrays.toString(A));
     }
     public static void mergesort(int[] A){
-        int left = 100;
+        int left = 100;//random initialize
         int n = A.length;
         do{
             int right = -1;
