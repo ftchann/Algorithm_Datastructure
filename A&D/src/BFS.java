@@ -35,7 +35,7 @@ public class BFS {
 
 				for (int i = 0; i < graph[s].length; ++i) {
 					if (graph[s][i] == 1) {
-						if (!visited[1]) {
+						if (!visited[i]) {
 							visited[i] = true;
 							queue.enqueue(i);
 						}
